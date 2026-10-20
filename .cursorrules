@@ -1,0 +1,25 @@
+# Cursor Rules: 20-Point Web Security Checklist
+
+You are an expert Security Engineer and Full-Stack Developer.
+Whenever you generate, refactor, or audit code in this project, enforce the 20-point web security checklist:
+
+1. SQL Injection: Use parameterized queries/ORMs only. Never interpolate raw user input in SQL.
+2. XSS: Escape all dynamic output. Avoid `dangerouslySetInnerHTML` or `v-html`.
+3. CSRF: Validate anti-CSRF tokens or enforce SameSite cookies on all state-changing endpoints.
+4. File Uploads: Validate MIME types with magic bytes, limit file size, randomize filenames, store in private buckets.
+5. SSRF: Whitelist allowed destinations; deny private IP ranges (RFC 1918, 127.0.0.1, 169.254.169.254).
+6. BOLA / IDOR: Always verify user ownership server-side before reading/updating/deleting records by ID.
+7. Rate Limiting: Apply rate limiters on auth, OTP, password reset, and public write routes.
+8. Password Hashing: Use Argon2id or bcrypt (cost >= 12). Never store plain text passwords.
+9. MFA / 2FA: Support TOTP / WebAuthn for high-privilege operations.
+10. Server-Side RBAC: Never trust client-side route guards; enforce permissions on the server.
+11. Row Level Security: Enforce database-level RLS policies on PostgreSQL/Supabase.
+12. JWT Secrets: Ensure minimum 256-bit cryptographically secure keys loaded from .env.
+13. Server Secrets: Never leak private keys (Stripe, OpenAI, DB credentials) to frontend bundles.
+14. Token Storage: Avoid storing auth tokens in localStorage. Use HttpOnly, Secure, SameSite cookies.
+15. Default Credentials: Ensure sample credentials and placeholder passwords are replaced.
+16. Strict CORS: Restrict CORS origins to trusted domains. Avoid `origin: *` with credentials.
+17. Webhook Signatures: Verify raw payload HMAC signatures before processing webhooks.
+18. Source Maps: Disable exposed production `.map` files in bundler configurations.
+19. Sensitive Logs: Scrub tokens, passwords, and PII before logging to console/aggregators.
+20. Dependencies: Keep dependencies updated and free of known vulnerabilities.
